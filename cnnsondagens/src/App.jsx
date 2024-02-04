@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import BarChartComponent from "./components/BarChart";
-import LineChartComponent from "./components/LineChart";
+import { useEffect, useState } from 'react';
+import BarChartComponent from './components/BarChart';
+import LineChartComponent from './components/LineChart';
 
 export const strokes = {
-  Chega: "#262626",
-  IL: "#5FB7E3",
-  Livre: "#02CD8B",
-  BE: "#C90535",
-  PS: "#F394B4",
-  AD: "#FF7F00",
-  PAN: "#008081",
-  CDU: "#1467C0",
+  Chega: '#262626',
+  IL: '#5FB7E3',
+  Livre: '#02CD8B',
+  BE: '#C90535',
+  PS: '#F394B4',
+  AD: '#FF7F00',
+  PAN: '#008081',
+  CDU: '#1467C0',
 };
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     async function fetchSondagens() {
       try {
-        fetch("http://localhost:3000/sondagens")
+        fetch('http://localhost:8080/sondagens')
           .then((res) => {
             return res.json();
           })
