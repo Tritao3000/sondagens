@@ -7,14 +7,14 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
-import { strokes } from "../App";
+} from 'recharts';
+import { strokes } from '../App';
 
 const LineChartComponent = ({ data }) => {
   if (!data) {
     return;
   }
-
+  console.log(data);
   const parties = Object.values(data[0])
     .sort(
       (a, b) =>
@@ -48,21 +48,21 @@ const LineChartComponent = ({ data }) => {
               layout="horizontal"
               verticalAlign="top"
               align="center"
-              style={{ position: "absolute", marginTop: -10 }}
+              style={{ position: 'absolute', marginTop: -10 }}
             />
             <CartesianGrid strokeDasharray="3 15" vertical="" />
             <XAxis
               tickLine={false}
               dataKey={() => names.map((name) => name)}
-              axisLine={{ stroke: "#D9D9D9" }}
-              tick={{ fill: "#262626" }}
+              axisLine={{ stroke: '#D9D9D9' }}
+              tick={{ fill: '#262626' }}
               dy={8}
               padding={{ left: 24, right: 24 }}
             />
             <YAxis
               tickLine={false}
-              axisLine={{ stroke: "#D9D9D9" }}
-              tick={{ fill: "#262626" }}
+              axisLine={{ stroke: '#D9D9D9' }}
+              tick={{ fill: '#262626' }}
               dx={-8}
               tickFormatter={(tick) => `${tick}%`}
             />
@@ -77,6 +77,19 @@ const LineChartComponent = ({ data }) => {
               />
             ))}
           </LineChart>
+          <div className="flex justify-between  pl-[68px] pr-4 mt-2">
+            {Object.values(data[0]).map((day, index) => {
+              if (day.keyMoments) {
+                return (
+                  <KeyMoments
+                    key={index}
+                    day={day.name}
+                    keyMoments={day.keyMoments}
+                  />
+                );
+              }
+            })}
+          </div>
         </ResponsiveContainer>
       </div>
     </>
@@ -98,6 +111,26 @@ const CustomTooltip = ({ active, payload, label }) => {
       </div>
     );
   }
+};
+
+const KeyMoments = ({ keyMoments, day }) => {
+  return (
+    <div
+      className="flex space-x-1 cursor-pointer w-8 justify-center items-center"
+      title={`Momentos chave ${day}`}
+    >
+      {Object.entries(keyMoments).map(([key, value], index) => {
+        console.log(strokes[key]);
+        return (
+          <div
+            className="w-1 h-5 rounded-md"
+            key={index}
+            style={{ backgroundColor: strokes[key] }}
+          ></div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default LineChartComponent;

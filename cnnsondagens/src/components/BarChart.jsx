@@ -5,10 +5,10 @@ import {
   LabelList,
   ResponsiveContainer,
   XAxis,
-} from "recharts";
+} from 'recharts';
 
-import { Radio } from "lucide-react";
-import { strokes } from "../App";
+import { Radio } from 'lucide-react';
+import { strokes } from '../App';
 
 function areDatesMatching(timestamp) {
   const now = new Date();
@@ -40,7 +40,7 @@ const BarChartComponent = ({ data }) => {
         </h2>
         <div
           className="p-2 md:p-8 rounded-md border-none relative flex justify-center"
-          style={{ boxShadow: "0px 0px 8px 0px rgba(38,38,38,0.2)" }}
+          style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
         >
           <p className="text-[#262626]">
             Não existem sondagens disponíveis hoje.
@@ -66,7 +66,7 @@ const BarChartComponent = ({ data }) => {
       </h2>
       <div
         className="p-2 md:p-8 rounded-md border-none relative"
-        style={{ boxShadow: "0px 0px 8px 0px rgba(38,38,38,0.2)" }}
+        style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
       >
         <div className="absolute text-xs text-white top-2 right-2 md:top-8 md:right-8 bg-[#CC0000] py-1 px-2 rounded-md flex items-center gap-1 font-semibold">
           <Radio size={16} /> LIVE
@@ -76,7 +76,7 @@ const BarChartComponent = ({ data }) => {
             <XAxis
               dataKey="name"
               tickLine={false}
-              tick={{ fill: "#262626" }}
+              tick={{ fill: '#262626' }}
               stroke="#262626"
             />
             <Bar dataKey="percentage">
@@ -92,11 +92,11 @@ const BarChartComponent = ({ data }) => {
                     <text
                       x={x + width / 2}
                       y={y}
-                      dy={-8}
-                      fontSize={14}
+                      dy={-6}
+                      fontSize={18}
                       textAnchor="middle"
-                      fill={color}
-                      fontWeight={800}
+                      fill={'black'}
+                      fontWeight={600}
                     >
                       {`${value}%`}
                     </text>
