@@ -3,12 +3,13 @@ import {
   BarChart,
   Cell,
   LabelList,
+  Legend,
   ResponsiveContainer,
   XAxis,
-} from 'recharts';
+} from "recharts";
 
-import { Radio } from 'lucide-react';
-import { strokes } from '../App';
+import { Radio } from "lucide-react";
+import { strokes } from "../App";
 
 function areDatesMatching(timestamp) {
   const now = new Date();
@@ -40,7 +41,7 @@ const BarChartComponent = ({ data }) => {
         </h2>
         <div
           className="p-2 md:p-8 rounded-md border-none relative flex justify-center"
-          style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
+          style={{ boxShadow: "0px 0px 8px 0px rgba(38,38,38,0.2)" }}
         >
           <p className="text-[#262626]">
             Não existem sondagens disponíveis hoje.
@@ -66,19 +67,14 @@ const BarChartComponent = ({ data }) => {
       </h2>
       <div
         className="p-2 md:p-8 rounded-md border-none relative"
-        style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
+        style={{ boxShadow: "0px 0px 8px 0px rgba(38,38,38,0.2)" }}
       >
         <div className="absolute text-xs text-white top-2 right-2 md:top-8 md:right-8 bg-[#CC0000] py-1 px-2 rounded-md flex items-center gap-1 font-semibold">
           <Radio size={16} /> LIVE
         </div>
         <ResponsiveContainer maxHeight={400} aspect={1}>
           <BarChart width={800} height={400} data={d} barCategoryGap={16}>
-            <XAxis
-              dataKey="name"
-              tickLine={false}
-              tick={{ fill: '#262626' }}
-              stroke="#262626"
-            />
+            <XAxis tickLine={false} tick={false} stroke="#262626" />
             <Bar dataKey="percentage">
               {d.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
@@ -95,7 +91,7 @@ const BarChartComponent = ({ data }) => {
                       dy={-6}
                       fontSize={18}
                       textAnchor="middle"
-                      fill={'black'}
+                      fill={"black"}
                       fontWeight={600}
                     >
                       {`${value}%`}
@@ -104,10 +100,39 @@ const BarChartComponent = ({ data }) => {
                 }}
               />
             </Bar>
+            <Legend
+              payload={d.map((item, index) => ({
+                id: index,
+                type: "rect",
+                value: item.name,
+                color: strokes[item.name],
+              }))}
+              content={<CustomLegend />}
+              iconSize={16}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>
     </>
+  );
+};
+
+const CustomLegend = (props) => {
+  const { payload } = props;
+
+  console.log(payload);
+
+  return (
+    <ul className="flex gap-4 justify-center flex-wrap">
+      {payload.map((value, index) => (
+        <div key={index} className="flex items-center gap-2">
+          <div className="w-4 h-3" style={{ backgroundColor: value.color }} />
+          <li key={index} style={{ color: value.color }}>
+            {value.value}
+          </li>
+        </div>
+      ))}
+    </ul>
   );
 };
 

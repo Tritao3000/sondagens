@@ -7,14 +7,14 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts';
-import { strokes } from '../App';
+} from "recharts";
+import { strokes } from "../App";
 
 const LineChartComponent = ({ data }) => {
   if (!data) {
     return;
   }
-  console.log(data);
+
   const parties = Object.values(data[0])
     .sort(
       (a, b) =>
@@ -48,21 +48,21 @@ const LineChartComponent = ({ data }) => {
               layout="horizontal"
               verticalAlign="top"
               align="center"
-              style={{ position: 'absolute', marginTop: -10 }}
+              style={{ position: "absolute", marginTop: -10 }}
             />
             <CartesianGrid strokeDasharray="3 15" vertical="" />
             <XAxis
               tickLine={false}
               dataKey={() => names.map((name) => name)}
-              axisLine={{ stroke: '#D9D9D9' }}
-              tick={{ fill: '#262626' }}
+              axisLine={{ stroke: "#D9D9D9" }}
+              tick={{ fill: "#262626" }}
               dy={8}
               padding={{ left: 24, right: 24 }}
             />
             <YAxis
               tickLine={false}
-              axisLine={{ stroke: '#D9D9D9' }}
-              tick={{ fill: '#262626' }}
+              axisLine={{ stroke: "#D9D9D9" }}
+              tick={{ fill: "#262626" }}
               dx={-8}
               tickFormatter={(tick) => `${tick}%`}
             />
@@ -120,7 +120,6 @@ const KeyMoments = ({ keyMoments, day }) => {
       title={`Momentos chave ${day}`}
     >
       {Object.entries(keyMoments).map(([key, value], index) => {
-        console.log(strokes[key]);
         return (
           <div
             className="w-1 h-5 rounded-md"
