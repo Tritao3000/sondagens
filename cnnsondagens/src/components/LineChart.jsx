@@ -57,6 +57,7 @@ const LineChartComponent = ({ data }) => {
               axisLine={{ stroke: "#D9D9D9" }}
               tick={{ fill: "#262626" }}
               dy={8}
+              padding={{ left: 24, right: 24 }}
             />
             <YAxis
               tickLine={false}
