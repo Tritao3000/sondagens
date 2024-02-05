@@ -31,7 +31,7 @@ const LineChartComponent = ({ data }) => {
       <h2 className="text-2xl font-bold pb-8 text-[#262626]">
         Evolução Temporal
       </h2>
-      <div className="rounded-md border-none overflow-auto">
+      <div className="rounded-md border-none overflow-auto hide-scrollbar">
         <ResponsiveContainer minWidth={650} aspect={2}>
           <LineChart
             width={500}

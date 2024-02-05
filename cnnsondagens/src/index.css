@@ -95,3 +95,7 @@ button:focus-visible {
   align-items: center;
   column-gap: 8px;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

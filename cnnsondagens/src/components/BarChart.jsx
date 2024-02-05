@@ -73,7 +73,7 @@ const BarChartComponent = ({ data }) => {
           maxHeight={400}
           minWidth={650}
           aspect={1}
-          className="overflow-auto"
+          className="overflow-auto hide-scrollbar"
         >
           <BarChart width={800} data={d} barCategoryGap={16}>
             <XAxis tickLine={false} tick={false} stroke="#262626" />
@@ -91,7 +91,8 @@ const BarChartComponent = ({ data }) => {
                       x={x + width / 2}
                       y={y}
                       dy={-6}
-                      fontSize={18}
+                      // fontSize={18}
+                      className="text-md md:text-lg"
                       textAnchor="middle"
                       fill={"black"}
                       fontWeight={600}
