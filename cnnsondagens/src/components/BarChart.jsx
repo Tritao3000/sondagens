@@ -6,10 +6,10 @@ import {
   Legend,
   ResponsiveContainer,
   XAxis,
-} from "recharts";
+} from 'recharts';
 
-import { Radio } from "lucide-react";
-import { strokes } from "../App";
+import { Radio } from 'lucide-react';
+import { strokes } from '../App';
 
 function areDatesMatching(timestamp) {
   const now = new Date();
@@ -41,7 +41,7 @@ const BarChartComponent = ({ data }) => {
         </h2>
         <div
           className="p-2 md:p-8 rounded-md border-none relative flex justify-center"
-          style={{ boxShadow: "0px 0px 8px 0px rgba(38,38,38,0.2)" }}
+          style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
         >
           <p className="text-[#262626]">
             Não existem sondagens disponíveis hoje.
@@ -59,6 +59,7 @@ const BarChartComponent = ({ data }) => {
       color: strokes[key],
     });
   });
+  d.sort((a, b) => b.percentage - a.percentage);
 
   return (
     <>
@@ -66,16 +67,11 @@ const BarChartComponent = ({ data }) => {
         Intenções de voto nas Redes Socias
       </h2>
       <div
-        className="p-2 md:p-8 rounded-md border-none relative overflow-auto"
-        style={{ boxShadow: "0px 0px 8px 0px rgba(38,38,38,0.2)" }}
+        className="p-2 md:p-8 rounded-md border-none relative"
+        style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
       >
-        <ResponsiveContainer
-          maxHeight={400}
-          minWidth={650}
-          aspect={1}
-          className="overflow-auto hide-scrollbar"
-        >
-          <BarChart width={800} data={d} barCategoryGap={16}>
+        <ResponsiveContainer maxHeight={400} aspect={1} className="">
+          <BarChart width={800} data={d} barCategoryGap={10}>
             <XAxis tickLine={false} tick={false} stroke="#262626" />
             <Bar dataKey="percentage">
               {d.map((entry, index) => (
@@ -94,7 +90,7 @@ const BarChartComponent = ({ data }) => {
                       // fontSize={18}
                       className="text-md md:text-lg"
                       textAnchor="middle"
-                      fill={"black"}
+                      fill={'black'}
                       fontWeight={600}
                     >
                       {`${value}%`}
