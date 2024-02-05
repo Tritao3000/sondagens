@@ -31,8 +31,8 @@ const LineChartComponent = ({ data }) => {
       <h2 className="text-2xl font-bold pb-8 text-[#262626]">
         Evolução Temporal
       </h2>
-      <div className=" rounded-md border-none">
-        <ResponsiveContainer width="100%" aspect={2}>
+      <div className="rounded-md border-none overflow-auto">
+        <ResponsiveContainer minWidth={650} aspect={2}>
           <LineChart
             width={500}
             height={300}
@@ -44,12 +44,7 @@ const LineChartComponent = ({ data }) => {
               bottom: 0,
             }}
           >
-            <Legend
-              layout="horizontal"
-              verticalAlign="top"
-              align="center"
-              style={{ position: "absolute", marginTop: -10 }}
-            />
+            <Legend verticalAlign="top" iconSize={20} />
             <CartesianGrid strokeDasharray="3 15" vertical="" />
             <XAxis
               tickLine={false}

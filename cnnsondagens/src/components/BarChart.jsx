@@ -66,14 +66,16 @@ const BarChartComponent = ({ data }) => {
         Intenções de voto nas Redes Socias
       </h2>
       <div
-        className="p-2 md:p-8 rounded-md border-none relative"
+        className="p-2 md:p-8 rounded-md border-none relative overflow-auto"
         style={{ boxShadow: "0px 0px 8px 0px rgba(38,38,38,0.2)" }}
       >
-        <div className="absolute text-xs text-white top-2 right-2 md:top-8 md:right-8 bg-[#CC0000] py-1 px-2 rounded-md flex items-center gap-1 font-semibold">
-          <Radio size={16} /> LIVE
-        </div>
-        <ResponsiveContainer maxHeight={400} aspect={1}>
-          <BarChart width={800} height={400} data={d} barCategoryGap={16}>
+        <ResponsiveContainer
+          maxHeight={400}
+          minWidth={650}
+          aspect={1}
+          className="overflow-auto"
+        >
+          <BarChart width={800} data={d} barCategoryGap={16}>
             <XAxis tickLine={false} tick={false} stroke="#262626" />
             <Bar dataKey="percentage">
               {d.map((entry, index) => (
@@ -103,7 +105,6 @@ const BarChartComponent = ({ data }) => {
             <Legend
               payload={d.map((item, index) => ({
                 id: index,
-                type: "rect",
                 value: item.name,
                 color: strokes[item.name],
               }))}
@@ -119,8 +120,6 @@ const BarChartComponent = ({ data }) => {
 
 const CustomLegend = (props) => {
   const { payload } = props;
-
-  console.log(payload);
 
   return (
     <ul className="flex gap-4 justify-center flex-wrap">

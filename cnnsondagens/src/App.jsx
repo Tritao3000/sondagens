@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="max-w-4xl p-4 mx-auto">
-      {/* <LineChartComponent data={sondagensHolder} /> */}
+      <LineChartComponent data={sondagensHolder} />
       <div className="my-20" />
       <BarChartComponent data={sondagensHolder} />
     </div>
