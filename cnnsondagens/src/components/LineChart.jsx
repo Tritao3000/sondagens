@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   LineChart,
   Line,
@@ -8,33 +8,33 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts';
-import { strokes } from '../App';
+} from "recharts";
+import { strokes } from "../App";
 
 const LineChartComponent = ({ data }) => {
   const [selectedKeyMoment, setSelectedKeyMoment] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
-  console.log(selectedKeyMoment);
+
   if (!data) {
     return;
   }
   const convertDate = (shortDate) => {
     const monthMappings = {
-      Jan: 'de Janeiro',
-      Fev: 'de Fevereiro',
-      Mar: 'de Março',
-      Abr: 'de Abril',
-      Mai: 'de Maio',
-      Jun: 'de Junho',
-      Jul: 'de Julho',
-      Ago: 'de Agosto',
-      Set: 'de Setembro',
-      Out: 'de Outubro',
-      Nov: 'de Novembro',
-      Dez: 'de Dezembro',
+      Jan: "de Janeiro",
+      Fev: "de Fevereiro",
+      Mar: "de Março",
+      Abr: "de Abril",
+      Mai: "de Maio",
+      Jun: "de Junho",
+      Jul: "de Julho",
+      Ago: "de Agosto",
+      Set: "de Setembro",
+      Out: "de Outubro",
+      Nov: "de Novembro",
+      Dez: "de Dezembro",
     };
 
-    const parts = shortDate.split(' '); // Split the date into day and month
+    const parts = shortDate.split(" "); // Split the date into day and month
     if (parts.length === 2) {
       const monthFull = monthMappings[parts[1]];
       if (monthFull) {
@@ -45,9 +45,9 @@ const LineChartComponent = ({ data }) => {
   };
 
   // Usage in your component
-  const formattedDay = selectedDay ? convertDate(selectedDay) : '';
+  const formattedDay = selectedDay ? convertDate(selectedDay) : "";
   const handleKeyMomentClick = (keyMoment, day) => {
-    setSelectedKeyMoment(keyMoment);
+    setSelectedKeyMoment(keyMoment === selectedKeyMoment ? null : keyMoment);
     setSelectedDay(day);
   };
 
@@ -85,15 +85,15 @@ const LineChartComponent = ({ data }) => {
             <XAxis
               tickLine={false}
               dataKey={() => names.map((name) => name)}
-              axisLine={{ stroke: '#D9D9D9' }}
-              tick={{ fill: '#262626' }}
+              axisLine={{ stroke: "#D9D9D9" }}
+              tick={{ fill: "#262626" }}
               dy={8}
               padding={{ left: 24, right: 24 }}
             />
             <YAxis
               tickLine={false}
-              axisLine={{ stroke: '#D9D9D9' }}
-              tick={{ fill: '#262626' }}
+              axisLine={{ stroke: "#D9D9D9" }}
+              tick={{ fill: "#262626" }}
               dx={-8}
               tickFormatter={(tick) => `${tick}%`}
             />
@@ -125,26 +125,22 @@ const LineChartComponent = ({ data }) => {
                 }
               })}
             </div>
-            {selectedKeyMoment && (
-              <div className="column-with-details pl-[68px] pr-4">
-                <h3 className="font-semibold text-base md:text-lg">
-                  {' '}
-                  Momentos chave do dia {formattedDay}{' '}
-                </h3>
-                {/* Render the details of selectedKeyMoment here */}
-                {Object.entries(selectedKeyMoment).map(
-                  ([key, value], index) => (
-                    <p key={index}>
-                      <strong style={{ color: strokes[key] }}>{key}:</strong>{' '}
-                      {value}
-                    </p>
-                  )
-                )}
-              </div>
-            )}
           </div>
         </ResponsiveContainer>
       </div>
+      {selectedKeyMoment && (
+        <div className="column-with-details pl-[68px] pr-4 text-[#262626] mt-4">
+          <h3 className="font-semibold text-base md:text-lg">
+            Momentos chave do dia {formattedDay}
+          </h3>
+          {/* Render the details of selectedKeyMoment here */}
+          {Object.entries(selectedKeyMoment).map(([key, value], index) => (
+            <p key={index}>
+              <strong style={{ color: strokes[key] }}>{key}:</strong> {value}
+            </p>
+          ))}
+        </div>
+      )}
     </>
   );
 };
