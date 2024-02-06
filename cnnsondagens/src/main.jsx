@@ -5,14 +5,14 @@ import './index.css';
 import LineChartComponent from './components/LineChart.jsx';
 import BarChartComponent from './components/BarChart.jsx';
 
-let sondagensBackend = sondagens;
+//let sondagensBackend = sondagens;
 
-/*ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
-);*/
-
+);
+/*
 ReactDOM.createRoot(document.getElementById('grafico-linhas')).render(
   <React.StrictMode>
     <LineChartComponent data={sondagensBackend} />
@@ -24,3 +24,4 @@ ReactDOM.createRoot(document.getElementById('grafico-barras')).render(
     <BarChartComponent data={sondagensBackend} />
   </React.StrictMode>
 );
+*/

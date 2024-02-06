@@ -14,9 +14,9 @@ export const strokes = {
 };
 
 function App() {
-  //const [sondagensHolder, setSondagensHolder] = useState(null);
-  const sondagensData = dataCNN;
-  /*useEffect(() => {
+  const [sondagensHolder, setSondagensHolder] = useState(null);
+
+  useEffect(() => {
     async function fetchSondagens() {
       try {
         fetch('http://localhost:8080/sondagens')
@@ -35,13 +35,13 @@ function App() {
     }
 
     fetchSondagens();
-  }, []);*/
+  }, []);
 
   return (
     <div className="max-w-4xl p-4 mx-auto">
-      <LineChartComponent data={sondagensData} />
+      <LineChartComponent data={sondagensHolder} />
       <div className="my-20" />
-      <BarChartComponent data={sondagensData} />
+      <BarChartComponent data={sondagensHolder} />
     </div>
   );
 }
