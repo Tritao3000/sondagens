@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import BarChartComponent from './components/BarChart';
 import LineChartComponent from './components/LineChart';
+import PartidosTodos from './components/PartidosTodos';
 
 export const strokes = {
   Chega: '#262626',
@@ -15,6 +16,7 @@ export const strokes = {
 
 function App() {
   const [sondagensHolder, setSondagensHolder] = useState(null);
+  const [sondagensHolder2, setSondagensHolder2] = useState(null);
 
   useEffect(() => {
     async function fetchSondagens() {
@@ -37,11 +39,34 @@ function App() {
     fetchSondagens();
   }, []);
 
+  useEffect(() => {
+    async function fetchSondagens2() {
+      try {
+        fetch('http://localhost:8080/sondagens2')
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            setSondagensHolder2(data);
+          })
+          .catch(() => {
+            setSondagensHolder2(null);
+          });
+      } catch (error) {
+        setSondagensHolder2(null);
+      }
+    }
+
+    fetchSondagens2();
+  }, []);
+
   return (
     <div className="max-w-4xl p-4 mx-auto">
       <LineChartComponent data={sondagensHolder} />
       <div className="my-20" />
       <BarChartComponent data={sondagensHolder} />
+      <div className="my-20" />
+      <PartidosTodos data={sondagensHolder2} />
     </div>
   );
 }

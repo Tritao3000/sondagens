@@ -29,7 +29,7 @@ function areDatesMatching(timestamp) {
 const BarChartComponent = ({ data }) => {
   if (!data) return;
 
-  const relevantData = Object.values(data[0]).find((val) =>
+  const relevantData = Object.values(Object.values(data[0])[0]).find((val) =>
     areDatesMatching(val.date)
   );
 

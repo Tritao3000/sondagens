@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   LineChart,
   Line,
@@ -8,33 +8,32 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
-import { strokes } from "../App";
+} from 'recharts';
+import { strokes } from '../App';
 
 const LineChartComponent = ({ data }) => {
   const [selectedKeyMoment, setSelectedKeyMoment] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
-
   if (!data) {
     return;
   }
   const convertDate = (shortDate) => {
     const monthMappings = {
-      Jan: "de Janeiro",
-      Fev: "de Fevereiro",
-      Mar: "de Março",
-      Abr: "de Abril",
-      Mai: "de Maio",
-      Jun: "de Junho",
-      Jul: "de Julho",
-      Ago: "de Agosto",
-      Set: "de Setembro",
-      Out: "de Outubro",
-      Nov: "de Novembro",
-      Dez: "de Dezembro",
+      Jan: 'de Janeiro',
+      Fev: 'de Fevereiro',
+      Mar: 'de Março',
+      Abr: 'de Abril',
+      Mai: 'de Maio',
+      Jun: 'de Junho',
+      Jul: 'de Julho',
+      Ago: 'de Agosto',
+      Set: 'de Setembro',
+      Out: 'de Outubro',
+      Nov: 'de Novembro',
+      Dez: 'de Dezembro',
     };
 
-    const parts = shortDate.split(" "); // Split the date into day and month
+    const parts = shortDate.split(' '); // Split the date into day and month
     if (parts.length === 2) {
       const monthFull = monthMappings[parts[1]];
       if (monthFull) {
@@ -45,20 +44,20 @@ const LineChartComponent = ({ data }) => {
   };
 
   // Usage in your component
-  const formattedDay = selectedDay ? convertDate(selectedDay) : "";
+  const formattedDay = selectedDay ? convertDate(selectedDay) : '';
   const handleKeyMomentClick = (keyMoment, day) => {
     setSelectedKeyMoment(keyMoment === selectedKeyMoment ? null : keyMoment);
     setSelectedDay(day);
   };
 
-  const parties = Object.values(data[0])
+  const parties = Object.values(Object.values(data[0])[0])
     .sort(
       (a, b) =>
         new Date(a.date._seconds * 1000) - new Date(b.date._seconds * 1000)
     )
     .map((d) => d.parties);
 
-  const names = Object.values(data[0])
+  const names = Object.values(Object.values(data[0])[0])
     .map((d) => d.name)
     .sort((a, b) => a.localeCompare(b));
 
@@ -85,15 +84,15 @@ const LineChartComponent = ({ data }) => {
             <XAxis
               tickLine={false}
               dataKey={() => names.map((name) => name)}
-              axisLine={{ stroke: "#D9D9D9" }}
-              tick={{ fill: "#262626" }}
+              axisLine={{ stroke: '#D9D9D9' }}
+              tick={{ fill: '#262626' }}
               dy={8}
               padding={{ left: 24, right: 24 }}
             />
             <YAxis
               tickLine={false}
-              axisLine={{ stroke: "#D9D9D9" }}
-              tick={{ fill: "#262626" }}
+              axisLine={{ stroke: '#D9D9D9' }}
+              tick={{ fill: '#262626' }}
               dx={-8}
               tickFormatter={(tick) => `${tick}%`}
             />
@@ -110,7 +109,7 @@ const LineChartComponent = ({ data }) => {
           </LineChart>
           <div className="flex flex-col space-y-4">
             <div className="flex justify-between  pl-[68px] pr-4 mt-2">
-              {Object.values(data[0]).map((day, index) => {
+              {Object.values(Object.values(data[0])[0]).map((day, index) => {
                 if (day.keyMoments) {
                   return (
                     <KeyMoments
