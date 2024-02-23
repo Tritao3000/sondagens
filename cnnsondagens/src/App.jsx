@@ -4,14 +4,14 @@ import LineChartComponent from './components/LineChart';
 import PartidosTodos from './components/PartidosTodos';
 
 export const strokes = {
-  Chega: '#262626',
-  IL: '#5FB7E3',
-  Livre: '#02CD8B',
-  BE: '#C90535',
-  PS: '#F394B4',
-  AD: '#FF7F00',
-  PAN: '#008081',
-  CDU: '#1467C0',
+  Chega: '#001ba4',
+  IL: '#329DC1',
+  Livre: '#2D2C31',
+  BE: '#7E1DAA',
+  PS: '#CE19BC',
+  AD: '#F26932',
+  PAN: '#75A639',
+  CDU: '#D02020',
 };
 
 function App() {

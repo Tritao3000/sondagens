@@ -31,6 +31,18 @@ const PartidosTodos = ({ data }) => {
 
   return (
     <div>
+      <div className="flex flex-col">
+        <div className="flex justify-between mb-4">
+          {' '}
+          <h4 className="font-semibold text-base xs:text-lg sm:text-xl text-black">
+            INTERAÇÕES <br /> POSITIVAS
+          </h4>
+          <h4 className="font-semibold text-base xs:text-lg sm:text-xl text-right text-black">
+            INTERAÇÕES <br /> NEGATIVAS
+          </h4>
+        </div>
+        <hr className="text-black bg-black h-[2px]" />
+      </div>
       {entries.map(([key, value], index) => (
         <Partido
           key={index}

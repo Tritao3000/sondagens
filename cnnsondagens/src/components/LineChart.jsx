@@ -112,7 +112,6 @@ const LineChartComponent = ({ data }) => {
           <div className="flex flex-col space-y-4">
             <div className="flex justify-between  pl-[68px] pr-4 mt-2">
               {sortedData.map((day, index) => {
-                console.log(day);
                 if (day.keyMoments) {
                   return (
                     <KeyMoments

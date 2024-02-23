@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
+import arrowUp from '../assets/arrowUp.png';
+import arrowDown from '../assets/arrowDown.png';
 
 const Partido = ({ keyName, elements, partyData }) => {
   const [positivePercentage, negativePercentage] = elements;
   const imageUrl = partyData[0];
   const color = partyData[1];
+  const partyName = partyData[2];
 
   // Animation state
   const [loaded, setLoaded] = useState(false);
@@ -12,79 +16,59 @@ const Partido = ({ keyName, elements, partyData }) => {
     setTimeout(() => setLoaded(true), 100); // Trigger the animation
   }, []);
 
-  const darkenColor = (color, darkenAmount = 0) => {
-    let r = parseInt(color.slice(1, 3), 16);
-    let g = parseInt(color.slice(3, 5), 16);
-    let b = parseInt(color.slice(5, 7), 16);
-
-    r = Math.max(0, r - darkenAmount);
-    g = Math.max(0, g - darkenAmount);
-    b = Math.max(0, b - darkenAmount);
-
-    const opacity = 0.2; // 20% opacity
-    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-  };
-
-  const calculateWidth = (percentage) => {
-    if (percentage < 20) {
-      return '20%'; // Lock width at 20% if the value is less than 20%
-    }
-    return `${percentage}%`;
-  };
-
-  const barStyle = (isPositive) => {
-    const baseStyle = {
-      width: loaded
-        ? calculateWidth(isPositive ? positivePercentage : negativePercentage)
-        : '0%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '36px',
-      fontWeight: 'bold',
-      transition: 'width 1s ease-in-out',
-      border: isPositive ? 'none' : `none`, // Solid border for negative bar
-      backgroundColor: isPositive ? color : 'white',
-      color: isPositive ? 'white' : 'black', // Text color set based on bar type
-    };
-
-    // Stripe pattern for the negative bar
-    const stripeSize = 20; // Thinner stripe size
-    const stripePattern = isPositive
-      ? ''
-      : `repeating-linear-gradient(
-      135deg,
-      ${darkenColor(color)},
-      ${darkenColor(color)} ${stripeSize}px,
-      transparent ${stripeSize}px,
-      transparent ${stripeSize * 2}px
+  const stripePattern = (color) => {
+    const stripeWidth = 2; // Thin stripes
+    const gapWidth = 2.5; // Space between stripes
+    return `repeating-linear-gradient(
+      45deg,
+      transparent,
+      ${color} ${stripeWidth}px,
+      ${color} ${stripeWidth}px,
+      transparent ${stripeWidth + gapWidth}px
     )`;
-
-    return {
-      ...baseStyle,
-      backgroundImage: stripePattern,
-    };
   };
+
+  const barStyle = (isPositive) => ({
+    width: loaded
+      ? `${isPositive ? positivePercentage : negativePercentage}%`
+      : '0%',
+    backgroundColor: isPositive ? color : 'transparent', // Fully transparent for negative
+    backgroundImage: !isPositive ? stripePattern(color) : 'none',
+    height: '36px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    transition: 'width 1s ease-in-out',
+  });
 
   return (
-    <div
-      className="partido-container"
-      style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}
-    >
-      <img
-        src={imageUrl}
-        alt={keyName}
-        style={{ width: '40px', marginRight: '20px' }}
-      />
-      <div className="flex" style={{ width: 'calc(100% - 60px)', gap: '8px' }}>
-        <div style={barStyle(true)}>{positivePercentage}%</div>
-        <div style={barStyle(false)}>{negativePercentage}%</div>
+    <div className="partido-container my-12 text-center flex flex-col items-center">
+      <div className="flex items-end justify-between w-full mb-2.5 text-lg font-bold">
+        <div className="flex items-center" title="Interações Positivas">
+          <img src={arrowUp} className="mr-2.5  w-8 sm:w-9 text-black" />
+          <p className="text-black text-base xs:text-lg sm:text-2xl font-bold">
+            {positivePercentage}%
+          </p>
+        </div>
+        <div className="flex items-center mx-5">
+          <img src={imageUrl} alt={partyName} className="h-12 mr-2.5" />
+          <h4 className="font-bold text-base xs:text-lg sm:text-2xl text-black">
+            {partyName}
+          </h4>
+        </div>
+        <div className="flex items-center" title="Interações Negativas">
+          <p className="text-black text-base xs:text-lg sm:text-2xl font-bold">
+            {negativePercentage}%
+          </p>
+          <img src={arrowDown} className="ml-2.5 w-8 sm:w-9 text-black" />
+        </div>
       </div>
-      <img
-        src={imageUrl}
-        alt={keyName}
-        style={{ width: '40px', marginLeft: '20px', filter: 'grayscale(90%)' }}
-      />
+      <div className="flex w-full bg-gray-200 h-9">
+        <div style={barStyle(true)}></div>
+        <div style={barStyle(false)}></div>
+      </div>
     </div>
   );
 };
