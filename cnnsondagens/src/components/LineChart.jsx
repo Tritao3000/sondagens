@@ -42,7 +42,9 @@ const LineChartComponent = ({ data }) => {
     }
     return shortDate; // Return the original date if format is unexpected or month is not found
   };
-
+  const sortedData = Object.values(Object.values(data[0])[0]).sort(
+    (a, b) => a.date._seconds - b.date._seconds
+  );
   // Usage in your component
   const formattedDay = selectedDay ? convertDate(selectedDay) : '';
   const handleKeyMomentClick = (keyMoment, day) => {
@@ -109,7 +111,8 @@ const LineChartComponent = ({ data }) => {
           </LineChart>
           <div className="flex flex-col space-y-4">
             <div className="flex justify-between  pl-[68px] pr-4 mt-2">
-              {Object.values(Object.values(data[0])[0]).map((day, index) => {
+              {sortedData.map((day, index) => {
+                console.log(day);
                 if (day.keyMoments) {
                   return (
                     <KeyMoments
@@ -152,7 +155,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         <div className="flex flex-col gap-0.5">
           {payload.map((value, index) => (
             <p className="text-sm" key={index} style={{ color: value.color }}>
-              {value.name}: {value.payload[value.name]}%
+              <strong>{value.name}:</strong> {value.payload[value.name]}%
             </p>
           ))}
         </div>

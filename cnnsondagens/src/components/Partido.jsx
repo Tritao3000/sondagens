@@ -43,13 +43,13 @@ const Partido = ({ keyName, elements, partyData }) => {
       height: '36px',
       fontWeight: 'bold',
       transition: 'width 1s ease-in-out',
-      border: isPositive ? 'none' : `3px solid ${darkenColor(color)}`, // Solid border for negative bar
+      border: isPositive ? 'none' : `none`, // Solid border for negative bar
       backgroundColor: isPositive ? color : 'white',
       color: isPositive ? 'white' : 'black', // Text color set based on bar type
     };
 
     // Stripe pattern for the negative bar
-    const stripeSize = 35; // Thinner stripe size
+    const stripeSize = 20; // Thinner stripe size
     const stripePattern = isPositive
       ? ''
       : `repeating-linear-gradient(
