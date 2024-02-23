@@ -53,7 +53,12 @@ const Partido = ({ keyName, elements, partyData }) => {
           </p>
         </div>
         <div className="flex items-center mx-5">
-          <img src={imageUrl} alt={partyName} className="h-12 mr-2.5" />
+          <img
+            src={imageUrl}
+            height={48}
+            alt={partyName}
+            className="h-12 mr-2.5"
+          />
           <h4 className="font-bold text-base xs:text-lg sm:text-2xl text-black">
             {partyName}
           </h4>
