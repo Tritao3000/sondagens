@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('grafico-linhas')).render(
   </React.StrictMode>
 );
 
-/*ReactDOM.createRoot(document.getElementById('grafico-barras')).render(
+ReactDOM.createRoot(document.getElementById('grafico-barras')).render(
   <React.StrictMode>
     <BarChartComponent data={sondagensBackend} />
   </React.StrictMode>
@@ -31,4 +31,4 @@ ReactDOM.createRoot(document.getElementById('ranking')).render(
   <React.StrictMode>
     <PartidosTodos data={sondagensBackend2} />
   </React.StrictMode>
-);*/
+);
