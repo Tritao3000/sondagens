@@ -8,13 +8,13 @@ const PartidosTodos = ({ data }) => {
     !data ||
     !Array.isArray(data) ||
     data.length === 0 ||
-    !data[0].partiesData
+    !data[0].perPartyData
   ) {
     return <div>No data available</div>;
   }
 
   // Access the partiesData object
-  const partiesData = data[0].partiesData;
+  const partiesData = data[0].perPartyData;
 
   // Ensure partiesData is an object
   if (typeof partiesData !== 'object' || partiesData === null) {
