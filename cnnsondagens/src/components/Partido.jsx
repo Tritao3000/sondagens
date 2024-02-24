@@ -67,7 +67,9 @@ const Partido = ({ keyName, elements, partyData }) => {
         </div>
         <div className="flex items-center" title="Interações Negativas">
           <p className="text-black text-base xs:text-lg sm:text-2xl font-bold">
-            {negativePercentage}%
+            {negativePercentage !== 'No Data'
+              ? `${negativePercentage}%`
+              : negativePercentage}
           </p>
           <img src={arrowDown} className="ml-2.5 w-8 sm:w-9 text-black" />
         </div>
