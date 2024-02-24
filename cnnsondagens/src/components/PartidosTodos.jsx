@@ -8,21 +8,21 @@ const PartidosTodos = ({ data }) => {
     !data ||
     !Array.isArray(data) ||
     data.length === 0 ||
-    !data[0].perPartyData
+    //!data[0].perPartyData
   ) {
     return <div>No data available</div>;
   }
 
   // Access the partiesData object
-  const partiesData = data[0].perPartyData;
+  const partiesData = data[0]//.perPartyData;
 
   // Ensure partiesData is an object
-  if (typeof partiesData !== 'object' || partiesData === null) {
+  /*if (typeof partiesData !== 'object' || partiesData === null) {
     return <div>Invalid data format</div>;
-  }
+  }*/
 
   // Create and sort entries array from partiesData
-  const entries = Object.entries(partiesData).sort((a, b) => {
+  const entries = partiesData.sort((a, b) => {
     const [, valuesA] = a;
     const [, valuesB] = b;
     const positivePercentageA = valuesA[0] === '' ? -1 : valuesA[0]; // Handle empty string
