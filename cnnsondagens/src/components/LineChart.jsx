@@ -11,6 +11,21 @@ import {
 } from 'recharts';
 import { strokes } from '../App';
 
+const monthMappings = {
+  Jan: 'de Janeiro',
+  Feb: 'de Fevereiro',
+  Mar: 'de Março',
+  Apr: 'de Abril',
+  May: 'de Maio',
+  Jun: 'de Junho',
+  Jul: 'de Julho',
+  Ago: 'de Agosto',
+  Set: 'de Setembro',
+  Out: 'de Outubro',
+  Nov: 'de Novembro',
+  Dez: 'de Dezembro',
+};
+
 const LineChartComponent = ({ data }) => {
   const [selectedKeyMoment, setSelectedKeyMoment] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
@@ -18,21 +33,6 @@ const LineChartComponent = ({ data }) => {
     return;
   }
   const convertDate = (shortDate) => {
-    const monthMappings = {
-      Jan: 'de Janeiro',
-      Feb: 'de Fevereiro',
-      Mar: 'de Março',
-      Apr: 'de Abril',
-      May: 'de Maio',
-      Jun: 'de Junho',
-      Jul: 'de Julho',
-      Ago: 'de Agosto',
-      Set: 'de Setembro',
-      Out: 'de Outubro',
-      Nov: 'de Novembro',
-      Dez: 'de Dezembro',
-    };
-
     const parts = shortDate.split(' '); // Split the date into day and month
     if (parts.length === 2) {
       const monthFull = monthMappings[parts[1]];
@@ -155,7 +155,9 @@ const CustomTooltip = ({ active, payload, label }) => {
 
     return (
       <div className="bg-white drop-shadow-md border border-[#262626]/10 p-2 rounded-md">
-        <p className="text-lg font-semibold text-[#262626] pb-1">{label}</p>
+        <p className="text-lg font-semibold text-[#262626] pb-1">
+          {monthMappings[label].slice(3, 6)}
+        </p>
         <div className="flex flex-col gap-0.5">
           {sortedPayload.map((value, index) => (
             <p className="text-sm" key={index} style={{ color: value.color }}>
