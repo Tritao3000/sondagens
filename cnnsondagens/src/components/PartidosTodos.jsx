@@ -23,12 +23,12 @@ const PartidosTodos = ({ data }) => {
 
   // Create and sort entries array from partiesData
   const entries = Object.entries(partiesData).sort((a, b) => {
-    // Assuming the first element of the array is the positive percentage
-    const positivePercentageA = a[1][0];
-    const positivePercentageB = b[1][0];
-    return positivePercentageB - positivePercentageA; // Sort in descending order
+    const [, valuesA] = a;
+    const [, valuesB] = b;
+    const positivePercentageA = valuesA[0] === '' ? -1 : valuesA[0]; // Handle empty string
+    const positivePercentageB = valuesB[0] === '' ? -1 : valuesB[0];
+    return positivePercentageB - positivePercentageA;
   });
-
   return (
     <div>
       <div className="flex flex-col">

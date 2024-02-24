@@ -4,7 +4,9 @@ import arrowUp from '../assets/arrowUp.png';
 import arrowDown from '../assets/arrowDown.png';
 
 const Partido = ({ keyName, elements, partyData }) => {
-  const [positivePercentage, negativePercentage] = elements;
+  const [positivePercentage, negativePercentage] = elements.map((value) =>
+    value === '' ? 'No Data' : value
+  );
   const imageUrl = partyData[0];
   const color = partyData[1];
   const partyName = partyData[2];
@@ -28,12 +30,15 @@ const Partido = ({ keyName, elements, partyData }) => {
     )`;
   };
 
-  const barStyle = (isPositive) => ({
+  const barStyle = (isPositive, percentage) => ({
     width: loaded
-      ? `${isPositive ? positivePercentage : negativePercentage}%`
+      ? percentage === 'No Data'
+        ? '50%'
+        : `${percentage}%`
       : '0%',
-    backgroundColor: isPositive ? color : 'transparent', // Fully transparent for negative
-    backgroundImage: !isPositive ? stripePattern(color) : 'none',
+    backgroundColor: isPositive ? color : 'transparent',
+    backgroundImage:
+      !isPositive && percentage !== 'No Data' ? stripePattern(color) : 'none',
     height: '36px',
     display: 'flex',
     alignItems: 'center',
