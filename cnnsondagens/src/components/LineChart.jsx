@@ -148,11 +148,16 @@ const LineChartComponent = ({ data }) => {
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
+    // Sort payload array by values in descending order
+    const sortedPayload = payload.sort((a, b) => {
+      return b.payload[b.name] - a.payload[a.name];
+    });
+
     return (
       <div className="bg-white drop-shadow-md border border-[#262626]/10 p-2 rounded-md">
         <p className="text-lg font-semibold text-[#262626] pb-1">{label}</p>
         <div className="flex flex-col gap-0.5">
-          {payload.map((value, index) => (
+          {sortedPayload.map((value, index) => (
             <p className="text-sm" key={index} style={{ color: value.color }}>
               <strong>{value.name}:</strong> {value.payload[value.name]}%
             </p>
@@ -161,6 +166,8 @@ const CustomTooltip = ({ active, payload, label }) => {
       </div>
     );
   }
+
+  return null;
 };
 
 const KeyMoments = ({ keyMoments, day, onClick }) => {
