@@ -30,15 +30,12 @@ const Partido = ({ keyName, elements, partyData }) => {
     )`;
   };
 
-  const barStyle = (isPositive, percentage) => ({
+  const barStyle = (isPositive) => ({
     width: loaded
-      ? percentage === 'No Data'
-        ? '50%'
-        : `${percentage}%`
+      ? `${isPositive ? positivePercentage : negativePercentage}%`
       : '0%',
-    backgroundColor: isPositive ? color : 'transparent',
-    backgroundImage:
-      !isPositive && percentage !== 'No Data' ? stripePattern(color) : 'none',
+    backgroundColor: isPositive ? color : 'transparent', // Fully transparent for negative
+    backgroundImage: !isPositive ? stripePattern(color) : 'none',
     height: '36px',
     display: 'flex',
     alignItems: 'center',
