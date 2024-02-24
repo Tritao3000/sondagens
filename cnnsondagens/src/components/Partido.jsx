@@ -51,7 +51,9 @@ const Partido = ({ keyName, elements, partyData }) => {
         <div className="flex items-center" title="Interações Positivas">
           <img src={arrowUp} className="mr-2.5  w-8 sm:w-9 text-black" />
           <p className="text-black text-base xs:text-lg sm:text-2xl font-bold">
-            {positivePercentage}%
+            {positivePercentage !== 'No Data'
+              ? `${positivePercentage}%`
+              : positivePercentage}
           </p>
         </div>
         <div className="flex items-center mx-5">
