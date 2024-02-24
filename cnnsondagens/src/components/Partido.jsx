@@ -5,7 +5,7 @@ import arrowDown from '../assets/arrowDown.png';
 
 const Partido = ({ keyName, elements, partyData }) => {
   const [positivePercentage, negativePercentage] = elements.map((value) =>
-    value === '' ? 'No Data' : value
+    value === '' ? 'Sem Dados' : value
   );
   const imageUrl = partyData[0];
   const color = partyData[1];
@@ -51,7 +51,7 @@ const Partido = ({ keyName, elements, partyData }) => {
         <div className="flex items-center" title="Interações Positivas">
           <img src={arrowUp} className="mr-2.5  w-8 sm:w-9 text-black" />
           <p className="text-black text-base xs:text-lg sm:text-2xl font-bold">
-            {positivePercentage !== 'No Data'
+            {positivePercentage !== 'Sem Dados'
               ? `${positivePercentage}%`
               : positivePercentage}
           </p>
@@ -69,7 +69,7 @@ const Partido = ({ keyName, elements, partyData }) => {
         </div>
         <div className="flex items-center" title="Interações Negativas">
           <p className="text-black text-base xs:text-lg sm:text-2xl font-bold">
-            {negativePercentage !== 'No Data'
+            {negativePercentage !== 'Sem Dados'
               ? `${negativePercentage}%`
               : negativePercentage}
           </p>
