@@ -4,17 +4,12 @@ import { parties } from './Parties';
 
 const PartidosTodos = ({ data }) => {
   // Check if data is structured as expected
-  if (
-    !data ||
-    !Array.isArray(data) ||
-    data.length === 0 ||
-    //!data[0].perPartyData
-  ) {
+  if (!data || !Array.isArray(data) || data.length === 0) {
     return <div>No data available</div>;
   }
 
   // Access the partiesData object
-  const partiesData = data[0]//.perPartyData;
+  const partiesData = data[0]; //.perPartyData;
 
   // Ensure partiesData is an object
   /*if (typeof partiesData !== 'object' || partiesData === null) {
