@@ -3,7 +3,6 @@ import Partido from './Partido';
 import { parties } from './Parties';
 
 const PartidosTodos = ({ data }) => {
-  console.log(data);
   // Check if data is structured as expected
   if (!data || !Array.isArray(data) || data.length === 0) {
     return <div>No data available</div>;
@@ -11,7 +10,6 @@ const PartidosTodos = ({ data }) => {
 
   // Access the partiesData object
   const partiesData = data[0]; //.perPartyData;
-  console.log(partiesData, 'hfsdfbsdfjrvnrfc');
   // Ensure partiesData is an object
   /*if (typeof partiesData !== 'object' || partiesData === null) {
     return <div>Invalid data format</div>;
