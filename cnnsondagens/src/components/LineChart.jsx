@@ -66,7 +66,7 @@ const LineChartComponent = ({ data }) => {
   return (
     <>
       <h2 className="text-2xl font-bold pb-8 text-[#262626]">
-        Evolução Temporal
+        Interações nas Redes Socias
       </h2>
       <div className="rounded-md border-none overflow-auto hide-scrollbar">
         <ResponsiveContainer minWidth={650} aspect={2}>
@@ -85,7 +85,14 @@ const LineChartComponent = ({ data }) => {
             <CartesianGrid strokeDasharray="3 15" vertical="" />
             <XAxis
               tickLine={false}
-              dataKey={() => names.map((name) => name)}
+              dataKey={() =>
+                names.map(
+                  (name) =>
+                    name.split(' ')[0] +
+                    ' ' +
+                    monthMappings[name.slice(-3)]?.slice(3, 6)
+                )
+              }
               axisLine={{ stroke: '#D9D9D9' }}
               tick={{ fill: '#262626' }}
               dy={8}
@@ -147,6 +154,7 @@ const LineChartComponent = ({ data }) => {
 };
 
 const CustomTooltip = ({ active, payload, label }) => {
+  console.log(label);
   if (active && payload && payload.length) {
     // Sort payload array by values in descending order
     const sortedPayload = payload.sort((a, b) => {
@@ -155,9 +163,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
     return (
       <div className="bg-white drop-shadow-md border border-[#262626]/10 p-2 rounded-md">
-        <p className="text-lg font-semibold text-[#262626] pb-1">
-          {monthMappings[label].slice(3, 6)}
-        </p>
+        <p className="text-lg font-semibold text-[#262626] pb-1">{label}</p>
         <div className="flex flex-col gap-0.5">
           {sortedPayload.map((value, index) => (
             <p className="text-sm" key={index} style={{ color: value.color }}>
