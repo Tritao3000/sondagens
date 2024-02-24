@@ -20,10 +20,10 @@ const LineChartComponent = ({ data }) => {
   const convertDate = (shortDate) => {
     const monthMappings = {
       Jan: 'de Janeiro',
-      Fev: 'de Fevereiro',
+      Feb: 'de Fevereiro',
       Mar: 'de Março',
-      Abr: 'de Abril',
-      Mai: 'de Maio',
+      Apr: 'de Abril',
+      May: 'de Maio',
       Jun: 'de Junho',
       Jul: 'de Julho',
       Ago: 'de Agosto',
