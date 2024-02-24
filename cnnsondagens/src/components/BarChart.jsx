@@ -71,7 +71,7 @@ const BarChartComponent = ({ data }) => {
         style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
       >
         <ResponsiveContainer maxHeight={400} aspect={1} className="">
-          <BarChart width={800} data={d} barCategoryGap={10}>
+          <BarChart width={800} data={d} barCategoryGap={10} className="mt-6">
             <XAxis tickLine={false} tick={false} stroke="#262626" />
             <Bar dataKey="percentage">
               {d.map((entry, index) => (
