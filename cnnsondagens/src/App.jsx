@@ -62,11 +62,11 @@ function App() {
 
   return (
     <div className="max-w-4xl p-4 mx-auto">
-      <LineChartComponent data={sondagensHolder} />
-      <div className="my-20" />
       <BarChartComponent data={sondagensHolder} />
       <div className="my-20" />
       <PartidosTodos data={sondagensHolder2} />
+      <div className="my-20" />
+      <LineChartComponent data={sondagensHolder} />
     </div>
   );
 }

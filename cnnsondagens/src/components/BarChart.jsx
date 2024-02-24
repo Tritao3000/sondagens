@@ -37,7 +37,7 @@ const BarChartComponent = ({ data }) => {
     return (
       <>
         <h2 className="text-2xl font-bold pb-8 text-[#262626]">
-          Intenções de voto nas Redes Socias
+          HOJE - Interações nas Redes Socias
         </h2>
         <div
           className="p-2 md:p-8 rounded-md border-none relative flex justify-center"
@@ -64,13 +64,13 @@ const BarChartComponent = ({ data }) => {
   return (
     <>
       <h2 className="text-2xl font-bold pb-8 text-[#262626]">
-        Intenções de voto nas Redes Socias
+        HOJE - Interações nas Redes Socias
       </h2>
       <div
-        className="p-2 md:p-8 rounded-md border-none relative"
+        className="p-2 md:p-4 rounded-md border-none relative"
         style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
       >
-        <ResponsiveContainer maxHeight={400} aspect={1} className="">
+        <ResponsiveContainer maxHeight={400} aspect={1}>
           <BarChart width={800} data={d} barCategoryGap={10}>
             <XAxis tickLine={false} tick={false} stroke="#262626" />
             <Bar dataKey="percentage">

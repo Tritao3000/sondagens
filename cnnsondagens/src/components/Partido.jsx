@@ -18,15 +18,24 @@ const Partido = ({ keyName, elements, partyData }) => {
     setTimeout(() => setLoaded(true), 100); // Trigger the animation
   }, []);
 
+  const rgbaColor = (hexColor, opacity) => {
+    const r = parseInt(hexColor.slice(1, 3), 16);
+    const g = parseInt(hexColor.slice(3, 5), 16);
+    const b = parseInt(hexColor.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  };
+
+  const transparentColor = rgbaColor(color, 0.2);
+
   const stripePattern = (color) => {
     const stripeWidth = 2; // Thin stripes
-    const gapWidth = 2.5; // Space between stripes
+    const gapWidth = 2; // Space between stripes
     return `repeating-linear-gradient(
       45deg,
-      transparent,
+      ${transparentColor},
       ${color} ${stripeWidth}px,
       ${color} ${stripeWidth}px,
-      transparent ${stripeWidth + gapWidth}px
+      ${transparentColor} ${stripeWidth + gapWidth}px
     )`;
   };
 
