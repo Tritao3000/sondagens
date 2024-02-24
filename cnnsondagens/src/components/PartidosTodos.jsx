@@ -18,7 +18,7 @@ const PartidosTodos = ({ data }) => {
   }*/
 
   // Create and sort entries array from partiesData
-  const entries = partiesData.sort((a, b) => {
+  const entries = Object.entries(partiesData).sort((a, b) => {
     const [, valuesA] = a;
     const [, valuesB] = b;
     const positivePercentageA = valuesA[0] === '' ? -1 : valuesA[0]; // Handle empty string
