@@ -44,7 +44,7 @@ const BarChartComponent = ({ data }) => {
           style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
         >
           <p className="text-[#262626]">
-            Não existem sondagens disponíveis hoje.
+            Ainda não existem dados de hoje disponíveis.
           </p>
         </div>
       </>
