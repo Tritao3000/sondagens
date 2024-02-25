@@ -58,7 +58,10 @@ const Partido = ({ keyName, elements, partyData }) => {
     <div className="partido-container my-12 text-center flex flex-col items-center">
       <div className="flex items-end justify-between w-full mb-2.5 text-lg font-bold">
         <div className="flex items-center" title="Interações Positivas">
-          <img src={arrowUp} className="mr-2.5  w-8 sm:w-9 text-black" />
+          <img
+            src="https://cdn.iol.pt/js/widgets/iol.widget.eleicoes.ar24/up.jpeg"
+            className="mr-2.5  w-8 sm:w-9 text-black"
+          />
           <p className="text-black text-base xs:text-lg sm:text-2xl font-bold">
             {positivePercentage !== 'Sem Dados'
               ? `${positivePercentage}%`
@@ -67,7 +70,7 @@ const Partido = ({ keyName, elements, partyData }) => {
         </div>
         <div className="flex items-center mx-5">
           <img
-            src="https://cdn.iol.pt/js/widgets/iol.widget.eleicoes.ar24/up.jpeg"
+            src={imageUrl}
             height={48}
             alt={partyName}
             className="h-12 mr-2.5"
