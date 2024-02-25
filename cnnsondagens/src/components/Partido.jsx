@@ -67,7 +67,7 @@ const Partido = ({ keyName, elements, partyData }) => {
         </div>
         <div className="flex items-center mx-5">
           <img
-            src={imageUrl}
+            src="https://cdn.iol.pt/js/widgets/iol.widget.eleicoes.ar24/up.jpeg"
             height={48}
             alt={partyName}
             className="h-12 mr-2.5"
@@ -82,7 +82,10 @@ const Partido = ({ keyName, elements, partyData }) => {
               ? `${negativePercentage}%`
               : negativePercentage}
           </p>
-          <img src={arrowDown} className="ml-2.5 w-8 sm:w-9 text-black" />
+          <img
+            src="https://cdn.iol.pt/js/widgets/iol.widget.eleicoes.ar24/down.jpeg"
+            className="ml-2.5 w-8 sm:w-9 text-black"
+          />
         </div>
       </div>
       <div className="flex w-full bg-gray-200 h-9">
