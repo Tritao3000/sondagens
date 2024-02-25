@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
-import arrowUp from '../assets/arrowUp.png';
-import arrowDown from '../assets/arrowDown.png';
+import arrowUp from '../../public/arrowUpp.png';
+import arrowDown from '../../public/arrowDownn.png';
 
 const Partido = ({ keyName, elements, partyData }) => {
   const [positivePercentage, negativePercentage] = elements.map((value) =>
