@@ -73,7 +73,7 @@ const BarChartComponent = ({ data }) => {
           <BarChart
             width={800}
             data={d}
-            barCategoryGap={10}
+            barCategoryGap={7}
             margin={{ top: 20, right: 20, left: 20, bottom: 5 }}
           >
             <XAxis tickLine={false} tick={false} stroke="#262626" />
@@ -102,9 +102,16 @@ const BarChartComponent = ({ data }) => {
                     </text>
                   );
                 }}
+              />{' '}
+              <LabelList
+                dataKey="name"
+                position="bottom"
+                className="text-xs sm:text-sm md:text-lg"
+                style={{ fill: 'black', fontWeight: 600 }}
+                offset={5}
               />
             </Bar>
-            <Legend
+            {/*<Legend
               payload={d.map((item, index) => ({
                 id: index,
                 value: item.name,
@@ -112,7 +119,7 @@ const BarChartComponent = ({ data }) => {
               }))}
               content={<CustomLegend />}
               iconSize={16}
-            />
+            />*/}
           </BarChart>
         </ResponsiveContainer>
       </div>
