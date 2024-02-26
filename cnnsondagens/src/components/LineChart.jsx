@@ -203,21 +203,28 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 const KeyMoments = ({ keyMoments, day, onClick }) => {
+  const isEmpty = Object.entries(keyMoments).length === 0;
+  const title = isEmpty
+    ? ''
+    : `Momentos chave ${day.split(' ')[0]} ${monthMappings[
+        day.slice(-3)
+      ]?.slice(3, 6)}`;
+
   return (
     <div
-      className="flex space-x-1 cursor-pointer w-8 justify-center items-center"
-      title={`Momentos chave ${day}`}
-      onClick={onClick}
+      className={`flex space-x-1 w-8 justify-center items-center ${
+        isEmpty ? 'no-pointer-events' : 'cursor-pointer'
+      }`}
+      title={title}
+      onClick={isEmpty ? undefined : onClick}
     >
-      {Object.entries(keyMoments).map(([key, value], index) => {
-        return (
-          <div
-            className="w-1 h-5 rounded-md"
-            key={index}
-            style={{ backgroundColor: strokes[key] }}
-          ></div>
-        );
-      })}
+      {Object.entries(keyMoments).map(([key, value], index) => (
+        <div
+          className="w-1 h-5 rounded-md"
+          key={index}
+          style={{ backgroundColor: strokes[key] }}
+        ></div>
+      ))}
     </div>
   );
 };
