@@ -78,7 +78,7 @@ const Partido = ({ keyName, elements, partyData, date }) => {
           <p className="text-black text-base xs:text-lg sm:text-2xl font-bold">
             {positivePercentage !== 'Sem Dados'
               ? `${positivePercentage}%`
-              : positivePercentage}
+              : '-%'}
           </p>
         </div>
         <div className="flex items-center mx-5">
