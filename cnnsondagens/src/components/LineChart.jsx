@@ -135,7 +135,7 @@ const LineChartComponent = ({ data }) => {
                 type="monotone"
                 dataKey={k}
                 stroke={strokes[k]}
-                strokeWidth={2} // Increase this value for thicker lines
+                strokeWidth={3} // Increase this value for thicker lines
                 //dot={{ fill: strokes[k], strokeWidth: 2 }} // Fill color for the dot and stroke width
               />
             ))}
