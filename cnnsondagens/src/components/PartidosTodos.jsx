@@ -43,6 +43,7 @@ const PartidosTodos = ({ data }) => {
           keyName={key}
           elements={value}
           partyData={parties[key]}
+          date={data[1]}
         />
       ))}
     </div>

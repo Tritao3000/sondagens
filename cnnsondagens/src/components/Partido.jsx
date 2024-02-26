@@ -3,10 +3,23 @@ import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 import arrowUp from '../../public/arrowUpp.png';
 import arrowDown from '../../public/arrowDownn.png';
 
-const Partido = ({ keyName, elements, partyData }) => {
-  const [positivePercentage, negativePercentage] = elements.map((value) =>
-    value === '' ? 'Sem Dados' : value
-  );
+const Partido = ({ keyName, elements, partyData, date }) => {
+  const isToday = (timestamp) => {
+    const today = new Date();
+    const date = new Date(timestamp.date._seconds * 1000); // Convert Firestore timestamp to JavaScript Date
+
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  };
+  const isDateToday = isToday(date);
+
+  const [positivePercentage, negativePercentage] = isDateToday
+    ? elements.map((value) => (value === '' ? 'Sem Dados' : value))
+    : ['Sem Dados', 'Sem Dados'];
+
   const imageUrl = partyData[0];
   const color = partyData[1];
   const partyName = partyData[2];

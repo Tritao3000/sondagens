@@ -78,7 +78,7 @@ const LineChartComponent = ({ data }) => {
         new Date(a.date._seconds * 1000) - new Date(b.date._seconds * 1000)
     )
     .map((d) => d.parties);
-  console.log(Object.values(parties[1]));
+
   const names = Object.values(Object.values(data[0])[0])
     .map((d) => d.name)
     .sort((a, b) => a.localeCompare(b));
@@ -178,7 +178,6 @@ const LineChartComponent = ({ data }) => {
 };
 
 const CustomTooltip = ({ active, payload, label }) => {
-  console.log(label);
   if (active && payload && payload.length) {
     // Sort payload array by values in descending order
     const sortedPayload = payload.sort((a, b) => {
