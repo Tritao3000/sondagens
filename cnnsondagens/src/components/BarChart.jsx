@@ -108,7 +108,7 @@ const BarChartComponent = ({ data }) => {
                 position="bottom"
                 className="text-xs sm:text-sm md:text-lg"
                 style={{ fill: 'black', fontWeight: 600 }}
-                offset={5}
+                offset={8}
               />
             </Bar>
             {/*<Legend
