@@ -11,6 +11,26 @@ import {
 } from 'recharts';
 import { strokes } from '../App';
 
+const calculateTickCount = (parties) => {
+  let maxDataValue = 0;
+
+  // Iterate through each element in the parties array
+  parties.forEach((party) => {
+    // Iterate through the values of each party data object
+    Object.values(party).forEach((value) => {
+      if (value > maxDataValue) {
+        maxDataValue = value;
+      }
+    });
+  });
+
+  // Calculate tick count based on maxDataValue
+  // Adjust the logic here as needed, for example to round to multiples of 5 or 10
+  const tickCount = Math.ceil(maxDataValue / 10) * 10;
+
+  return tickCount / 10 + 1;
+};
+
 const monthMappings = {
   Jan: 'de Janeiro',
   Feb: 'de Fevereiro',
@@ -58,11 +78,12 @@ const LineChartComponent = ({ data }) => {
         new Date(a.date._seconds * 1000) - new Date(b.date._seconds * 1000)
     )
     .map((d) => d.parties);
-
+  console.log(Object.values(parties[1]));
   const names = Object.values(Object.values(data[0])[0])
     .map((d) => d.name)
     .sort((a, b) => a.localeCompare(b));
 
+  const tickCount = calculateTickCount(parties);
   return (
     <>
       <h2 className="text-2xl font-bold pb-8 text-[#262626]">
@@ -105,6 +126,7 @@ const LineChartComponent = ({ data }) => {
               dx={-8}
               tickFormatter={(tick) => `${tick}%`}
               domain={[0, (dataMax) => Math.ceil(dataMax / 10) * 10]}
+              tickCount={tickCount}
             />
             <Tooltip content={<CustomTooltip />} />
             {Object.keys(parties[0]).map((k, index) => (
