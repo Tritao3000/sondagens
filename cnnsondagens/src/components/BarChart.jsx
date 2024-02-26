@@ -6,6 +6,7 @@ import {
   Legend,
   ResponsiveContainer,
   XAxis,
+  YAxis,
 } from 'recharts';
 
 import { Radio } from 'lucide-react';
@@ -69,8 +70,14 @@ const BarChartComponent = ({ data }) => {
         style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
       >
         <ResponsiveContainer maxHeight={400} aspect={1}>
-          <BarChart width={800} data={d} barCategoryGap={10}>
+          <BarChart
+            width={800}
+            data={d}
+            barCategoryGap={10}
+            margin={{ top: 20, right: 20, left: 20, bottom: 5 }}
+          >
             <XAxis tickLine={false} tick={false} stroke="#262626" />
+
             <Bar dataKey="percentage">
               {d.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
@@ -86,7 +93,7 @@ const BarChartComponent = ({ data }) => {
                       y={y}
                       dy={-6}
                       // fontSize={18}
-                      className="text-md md:text-lg"
+                      className="text-xs sm:text-sm md:text-lg"
                       textAnchor="middle"
                       fill={'black'}
                       fontWeight={600}

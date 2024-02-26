@@ -104,6 +104,7 @@ const LineChartComponent = ({ data }) => {
               tick={{ fill: '#262626' }}
               dx={-8}
               tickFormatter={(tick) => `${tick}%`}
+              domain={[0, (dataMax) => Math.ceil(dataMax / 10) * 10]}
             />
             <Tooltip content={<CustomTooltip />} />
             {Object.keys(parties[0]).map((k, index) => (
@@ -112,7 +113,8 @@ const LineChartComponent = ({ data }) => {
                 type="monotone"
                 dataKey={k}
                 stroke={strokes[k]}
-                strokeWidth={2}
+                strokeWidth={2} // Increase this value for thicker lines
+                //dot={{ fill: strokes[k], strokeWidth: 2 }} // Fill color for the dot and stroke width
               />
             ))}
           </LineChart>

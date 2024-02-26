@@ -83,7 +83,7 @@ const Partido = ({ keyName, elements, partyData }) => {
           <p className="text-black text-base xs:text-lg sm:text-2xl font-bold">
             {negativePercentage !== 'Sem Dados'
               ? `${negativePercentage}%`
-              : negativePercentage}
+              : '-%'}
           </p>
           <img
             src="https://cdn.iol.pt/js/widgets/iol.widget.eleicoes.ar24/down.jpeg"
