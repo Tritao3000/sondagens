@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   Bar,
   BarChart,
@@ -28,6 +29,17 @@ function areDatesMatching(timestamp) {
 }
 
 const BarChartComponent = ({ data }) => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Determine the barCategoryGap based on screen width
+  const barCategoryGap = screenWidth < 768 ? 5 : 10;
   if (!data) return;
 
   const relevantData = Object.values(Object.values(data[0])[0]).find((val) =>
@@ -73,7 +85,7 @@ const BarChartComponent = ({ data }) => {
           <BarChart
             width={800}
             data={d}
-            barCategoryGap={7}
+            barCategoryGap={barCategoryGap}
             margin={{ top: 20, right: 20, left: 20, bottom: 5 }}
           >
             <XAxis tickLine={false} tick={false} stroke="#262626" />
