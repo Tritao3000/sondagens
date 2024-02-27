@@ -118,6 +118,7 @@ const LineChartComponent = ({ data }) => {
               tick={{ fill: '#262626' }}
               dy={8}
               padding={{ left: 24, right: 24 }}
+              style={{ fill: 'black', fontWeight: 600 }}
             />
             <YAxis
               tickLine={false}
@@ -127,6 +128,7 @@ const LineChartComponent = ({ data }) => {
               tickFormatter={(tick) => `${tick}%`}
               domain={[0, (dataMax) => Math.ceil(dataMax / 10) * 10]}
               tickCount={tickCount}
+              style={{ fill: 'black', fontWeight: 600 }}
             />
             <Tooltip content={<CustomTooltip />} />
             {Object.keys(parties[0]).map((k, index) => (
@@ -136,7 +138,7 @@ const LineChartComponent = ({ data }) => {
                 dataKey={k}
                 stroke={strokes[k]}
                 strokeWidth={3} // Increase this value for thicker lines
-                dot={{ fill: strokes[k], strokeWidth: 2 }} // Fill color for the dot and stroke width
+                dot={{ fill: strokes[k], strokeWidth: 1 }} // Fill color for the dot and stroke width
               />
             ))}
           </LineChart>
