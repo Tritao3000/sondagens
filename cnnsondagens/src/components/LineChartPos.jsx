@@ -129,7 +129,10 @@ const LineChartPosComponent = ({ data }) => {
               tick={{ fill: '#262626' }}
               dx={-8}
               tickFormatter={(tick) => `${tick}%`}
-              domain={[0, (dataMax) => Math.ceil(dataMax / 10) * 10]}
+              domain={[
+                (dataMin) => Math.floor(dataMin / 10) * 10,
+                (dataMax) => Math.ceil(dataMax / 10) * 10,
+              ]}
               tickCount={tickCount}
             />
             <Tooltip content={<CustomTooltip />} />
