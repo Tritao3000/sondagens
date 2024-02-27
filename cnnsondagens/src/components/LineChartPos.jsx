@@ -143,7 +143,7 @@ const LineChartPosComponent = ({ data }) => {
                 dataKey={k}
                 stroke={strokes[k]}
                 strokeWidth={3} // Increase this value for thicker lines
-                dot={{ fill: strokes[k], strokeWidth: 2 }} // Fill color for the dot and stroke width
+                dot={{ fill: strokes[k], strokeWidth: 1 }} // Fill color for the dot and stroke width
               />
             ))}
           </LineChart>
