@@ -118,6 +118,7 @@ const LineChartPosComponent = ({ data }) => {
                     monthMappings[name.slice(-3)]?.slice(3, 6)
                 )
               }
+              style={{ fill: 'black', fontWeight: 600 }}
               axisLine={{ stroke: '#D9D9D9' }}
               tick={{ fill: '#262626' }}
               dy={8}
@@ -134,6 +135,7 @@ const LineChartPosComponent = ({ data }) => {
                 (dataMax) => Math.ceil(dataMax / 10) * 10,
               ]}
               tickCount={tickCount}
+              style={{ fill: 'black', fontWeight: 600 }}
             />
             <Tooltip content={<CustomTooltip />} />
             {Object.keys(parties[0]).map((k, index) => (
