@@ -98,7 +98,7 @@ const LineChartComponent = ({ data }) => {
             margin={{
               top: 0,
               right: 5,
-              left: 0,
+              left: 5,
               bottom: 0,
             }}
           >
