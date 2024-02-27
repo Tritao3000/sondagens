@@ -86,9 +86,9 @@ const LineChartPosComponent = ({ data }) => {
   const tickCount = calculateTickCount(parties);
   return (
     <>
-      <h2 className="text-2xl font-bold pb-8 text-[#262626]">
+      {/*<h2 className="text-2xl font-bold pb-8 text-[#262626]">
         Interações nas Redes Socias
-      </h2>
+      </h2>*/}
       <div className="rounded-md border-none overflow-auto hide-scrollbar">
         <ResponsiveContainer minWidth={650} aspect={2}>
           <LineChart

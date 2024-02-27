@@ -74,9 +74,9 @@ const BarChartComponent = ({ data }) => {
 
   return (
     <>
-      <h2 className="text-2xl font-bold pb-8 text-[#262626]">
+      {/*<h2 className="text-2xl font-bold pb-8 text-[#262626]">
         HOJE - Interações nas Redes Socias
-      </h2>
+  </h2>*/}
       <div
         className="p-2 md:p-4 rounded-md border-none relative"
         style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
