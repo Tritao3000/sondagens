@@ -28,7 +28,11 @@ const calculateTickCount = (parties) => {
   // Adjust the logic here as needed, for example to round to multiples of 5 or 10
   const tickCount = Math.ceil(maxDataValue / 10) * 10;
 
-  return tickCount / 10 + 1;
+  if (tickCount >= 60) {
+    return tickCount / 20 + 1;
+  } else {
+    return tickCount / 10 + 1;
+  }
 };
 
 const monthMappings = {
