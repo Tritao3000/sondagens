@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import LineChartComponent from './components/LineChart.jsx';
+import LineChartPosComponent from './components/LineChartPos.jsx';
 import BarChartComponent from './components/BarChart.jsx';
 import PartidosTodos from './components/PartidosTodos.jsx';
 
@@ -31,5 +32,11 @@ ReactDOM.createRoot(document.getElementById('ranking')).render(
 ReactDOM.createRoot(document.getElementById('grafico-linhas')).render(
   <React.StrictMode>
     <LineChartComponent data={sondagensBackend} />
+  </React.StrictMode>
+);
+
+ReactDOM.createRoot(document.getElementById('grafico-linhas-pos')).render(
+  <React.StrictMode>
+    <LineChartPosComponent data={sondagensBackend} />
   </React.StrictMode>
 );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import BarChartComponent from './components/BarChart';
 import LineChartComponent from './components/LineChart';
+import LineChartPosComponent from './components/LineChartPos';
 import PartidosTodos from './components/PartidosTodos';
 
 export const strokes = {
@@ -67,6 +68,8 @@ function App() {
       <PartidosTodos data={sondagensHolder2} />
       <div className="my-20" />
       <LineChartComponent data={sondagensHolder} />
+      <div className="my-20" />
+      <LineChartPosComponent data={sondagensHolder} />
     </div>
   );
 }
