@@ -112,7 +112,7 @@ const LineChartPosComponent = ({ data }) => {
             }}
           >
             <Legend verticalAlign="top" iconSize={20} />
-            <CartesianGrid strokeDasharray="3 15" vertical="" />
+            <CartesianGrid strokeDasharray="3 6" vertical="" />
             <XAxis
               tickLine={false}
               dataKey={() =>
