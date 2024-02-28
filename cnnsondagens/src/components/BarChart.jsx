@@ -4,13 +4,11 @@ import {
   BarChart,
   Cell,
   LabelList,
-  Legend,
   ResponsiveContainer,
   XAxis,
   YAxis,
 } from 'recharts';
 
-import { Radio } from 'lucide-react';
 import { strokes } from '../App';
 
 function areDatesMatching(timestamp) {
@@ -38,8 +36,6 @@ const BarChartComponent = ({ data }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Determine the barCategoryGap based on screen width
-  const barCategoryGap = screenWidth < 768 ? 5 : 10;
   if (!data) return;
 
   const relevantData = Object.values(Object.values(data[0])[0]).find((val) =>
@@ -49,9 +45,8 @@ const BarChartComponent = ({ data }) => {
   if (!relevantData) {
     return (
       <>
-        <h2 className="text-2xl font-bold pb-8 text-[#262626]">
-          HOJE - Interações nas Redes Socias
-        </h2>
+        {/*<h2 className="text-2xl font-bold pb-8 text-[#262626]">
+        HOJE - Interações nas Redes Socias</h2>*/}
         <div
           className="p-2 md:p-8 rounded-md border-none relative flex justify-center"
           style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
@@ -74,22 +69,36 @@ const BarChartComponent = ({ data }) => {
 
   return (
     <>
-      {/*<h2 className="text-2xl font-bold pb-8 text-[#262626]">
-        HOJE - Interações nas Redes Socias
-  </h2>*/}
       <div
         className="p-2 md:p-4 rounded-md border-none relative"
         style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
       >
-        <ResponsiveContainer maxHeight={400} aspect={1}>
+        <ResponsiveContainer
+          height={'100%'}
+          width={'100%'}
+          maxHeight={400}
+          aspect={1}
+        >
           <BarChart
-            width={800}
             data={d}
-            barCategoryGap={barCategoryGap}
-            margin={{ top: 20, right: 20, left: 20, bottom: 5 }}
+            barCategoryGap={screenWidth < 768 ? 5 : 10}
+            margin={{
+              top: 20,
+              right: 20,
+              bottom: 5,
+              // Adjust left margin to compensate for the invisible YAxis space
+              left: 20, // Adjust this value based on your actual layout needs
+            }}
           >
             <XAxis tickLine={false} tick={false} stroke="#262626" />
-
+            <YAxis
+              domain={[0, (dataMax) => dataMax]}
+              tickLine={false}
+              axisLine={false}
+              tick={false}
+              mirror={true} // Attempt to draw the axis line and ticks on the opposite side
+              width={0} // Attempt to reduce YAxis width to 0
+            />
             <Bar dataKey="percentage">
               {d.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
@@ -98,13 +107,12 @@ const BarChartComponent = ({ data }) => {
                 dataKey="percentage"
                 position="top"
                 content={(props) => {
-                  const { value, x, y, width, color } = props;
+                  const { value, x, y, width } = props;
                   return (
                     <text
                       x={x + width / 2}
                       y={y}
                       dy={-6}
-                      // fontSize={18}
                       className="text-xs sm:text-sm md:text-lg"
                       textAnchor="middle"
                       fill={'black'}
@@ -114,7 +122,7 @@ const BarChartComponent = ({ data }) => {
                     </text>
                   );
                 }}
-              />{' '}
+              />
               <LabelList
                 dataKey="name"
                 position="bottom"
@@ -138,10 +146,8 @@ const BarChartComponent = ({ data }) => {
     </>
   );
 };
-
 const CustomLegend = (props) => {
   const { payload } = props;
-
   return (
     <ul className="flex gap-4 justify-center flex-wrap">
       {payload.map((value, index) => (

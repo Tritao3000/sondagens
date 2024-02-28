@@ -90,7 +90,12 @@ const LineChartComponent = ({ data }) => {
         Interações nas Redes Socias
       </h2>*/}
       <div className="rounded-md border-none overflow-auto hide-scrollbar">
-        <ResponsiveContainer minWidth={650} aspect={2}>
+        <ResponsiveContainer
+          height={'100%'}
+          width={'100%'}
+          minWidth={650}
+          aspect={2}
+        >
           <LineChart
             width={500}
             height={300}
