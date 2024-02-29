@@ -51,7 +51,10 @@ const BarChartComponent = ({ data }) => {
           className="p-2 md:p-8 rounded-md border-none relative flex justify-center"
           style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
         >
-          <p className="text-[#262626]">Ainda não existem dados disponíveis.</p>
+          <p className="text-[#262626]">
+            Ainda não foram recolhidas interações suficientes para mostrar o
+            gráfico.
+          </p>
         </div>
       </>
     );
