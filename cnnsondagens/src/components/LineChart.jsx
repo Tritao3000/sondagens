@@ -65,6 +65,7 @@ const LineChartComponent = ({ data }) => {
   const sortedData = Object.values(Object.values(data[0])[0]).sort(
     (a, b) => a.date._seconds - b.date._seconds
   );
+
   // Usage in your component
   const formattedDay = selectedDay ? convertDate(selectedDay) : '';
   const handleKeyMomentClick = (keyMoment, day) => {
@@ -79,9 +80,7 @@ const LineChartComponent = ({ data }) => {
     )
     .map((d) => d.parties);
 
-  const names = Object.values(Object.values(data[0])[0])
-    .map((d) => d.name)
-    .sort((a, b) => a.localeCompare(b));
+  const names = sortedData.map((d) => d.name);
 
   const tickCount = calculateTickCount(parties);
   return (

@@ -83,11 +83,9 @@ const LineChartPosComponent = ({ data }) => {
     )
     .map((d) => d.parties);
 
-  const names = Object.values(Object.values(data[1])[0])
-    .map((d) => d.name)
-    .sort((a, b) => a.localeCompare(b));
+  const names = sortedData.map((d) => d.name);
 
-  const tickCount = calculateTickCount(parties);
+  //const tickCount = calculateTickCount(parties);
   return (
     <>
       {/*<h2 className="text-2xl font-bold pb-8 text-[#262626]">
