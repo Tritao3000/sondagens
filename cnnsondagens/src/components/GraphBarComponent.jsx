@@ -1,50 +1,49 @@
-// GraphBarComponent.js
-import Chega from '@/assets/images/chegavert.png';
 import { parties } from './Parties';
 
-const GraphBarComponent = ({ partyKey, percentage, index, partyLength }) => {
-  const getPartyData = (partyKey) => {
-    if (parties[partyKey]) {
-      return parties[partyKey];
-    }
-    // Return a default value or handle the undefined case
-    return [Chega, '#213357']; // Replace with actual default path and color
-  };
+const GraphBarComponent = ({
+  partyKey,
+  percentage,
+  maxPercentage,
+  index,
+  partyLength,
+}) => {
+  const [imagePath, color, name] = parties[partyKey] || [
+    'defaultPath',
+    '#213357',
+    'Default Name',
+  ];
 
-  // Retrieve the image path and color for the party
-  const [imagePath, color] = getPartyData(partyKey);
+  // Ensure percentage is a number for all operations
+  const numericPercentage = Number(percentage);
 
-  const barWidth = percentage !== '0' ? `${percentage * 10}%` : '10%';
-  const barLabel = percentage !== '0' ? percentage : '-';
+  // Calculate width as a percentage of the maxPercentage and ensure it's a number
+  const scaledWidth = (numericPercentage / maxPercentage) * 100;
+  const barWidth = `${scaledWidth}%`;
+
+  // Alternative rounding method to toFixed
+  const roundToOneDecimal = (num) => Math.round(num * 10) / 10;
+
   return (
     <div
       className={`flex items-center ${
-        index !== partyLength - 1 ? 'my-3' : 'mt-3'
+        index !== partyLength - 1 ? 'mb-3' : 'mt-3'
       }`}
       title={partyKey}
     >
-      {/* Party Image */}
       <div className="w-10 h-10 relative mr-4">
         <img
           src={imagePath}
           alt={partyKey}
-          style={{ objectFit: 'contain' }}
-          className="h-10"
+          className="w-full h-full object-contain"
         />
       </div>
-
-      {/* Party Graph Bar */}
-      <div className="flex-1 h-7 relative">
+      <div className="flex-1 h-8 relative bg-transparent">
         <div
-          className="flex absolute top-0 left-0 bottom-0 items-center"
-          style={{ width: barWidth, backgroundColor: color }}
+          className={`absolute top-0 left-0 bottom-0 flex items-center `}
+          style={{ backgroundColor: color, width: barWidth, minWidth: '40px' }}
         >
-          <p
-            className={`my-auto justify-center text-sm font-semibold text-white ${
-              barLabel === '-' ? 'mx-auto' : 'ml-2'
-            }`}
-          >
-            {barLabel}
+          <p className="text-xs sm:text-sm font-semibold text-white ml-2">
+            {`${roundToOneDecimal(numericPercentage)}%`}
           </p>
         </div>
       </div>

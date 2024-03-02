@@ -1,62 +1,53 @@
 import GraphBarComponent from './GraphBarComponent';
 
 const MediaPos = ({ data }) => {
-  const calculatePartyAverages = (data) => {
-    const partyScores = {};
-    Object.keys(data).map((key) => {
-      data[key].debates.map((item) => {
-        // Check if the key is a party key and the value is not '-'
-        const partyKey1 = item.partyL;
-        const partyKey2 = item.partyR;
-        if (!partyScores[partyKey1]) {
-          partyScores[partyKey1] = [];
-        }
-        if (item.percL !== '-') {
-          const percentage1 = parseInt(item.percL.slice(0, -1), 10);
-          partyScores[partyKey1].push(percentage1);
-        }
+  if (!data) {
+    return;
+  }
+  const calculateAverageValues = (timeSeriesData) => {
+    const partySums = {};
+    const partyCounts = {};
 
-        if (!partyScores[partyKey2]) {
-          partyScores[partyKey2] = [];
-        }
-        if (item.percR !== '-') {
-          const percentage2 = parseInt(item.percR.slice(0, -1), 10);
-
-          partyScores[partyKey2].push(percentage2);
-        }
-      });
+    // Iterate through each day
+    Object.values(timeSeriesData).forEach((day) => {
+      // Check if the 'parties' field exists
+      if (day.parties) {
+        // Iterate through each party in the 'parties' object
+        Object.entries(day.parties).forEach(([partyName, value]) => {
+          // Accumulate the sum and count for each party
+          if (!partySums[partyName]) {
+            partySums[partyName] = 0;
+            partyCounts[partyName] = 0;
+          }
+          partySums[partyName] += value;
+          partyCounts[partyName] += 1;
+        });
+      }
     });
 
-    // Now calculate averages for each party
-    const averages = Object.entries(partyScores).map(([party, scores]) => {
-      let average =
-        scores.length > 0
-          ? Math.round(
-              scores.reduce((acc, score) => acc + score, 0) / scores.length
-            )
-          : 0;
-      average = average / 10;
-      return { party, average };
-    });
+    // Calculate the average for each party
+    const averages = Object.entries(partySums).map(([partyName, sum]) => ({
+      partyName,
+      average: Math.round((sum / partyCounts[partyName]) * 10) / 10,
+    }));
 
-    // Sort by average percentage in descending order, placing parties with '-' at the end
-    averages.sort((a, b) => {
-      if (a.average === 0) return 1;
-      if (b.average === 0) return -1;
-      return b.average - a.average;
-    });
+    // Sort the averages from highest to lowest
+    averages.sort((a, b) => b.average - a.average);
+
     return averages;
   };
+  const averageValues = calculateAverageValues(data[1].timeSeriesData);
+  const partyLegth = averageValues.length;
+  console.log(averageValues);
 
-  const partyAverages = calculatePartyAverages(data);
-  const partyLegth = partyAverages.length;
   return (
     <div>
-      {partyAverages.map((partyData, index) => (
+      {averageValues.map((partyData, index) => (
         <GraphBarComponent
           key={index}
-          partyKey={partyData.party}
+          partyKey={partyData.partyName}
           percentage={`${partyData.average}`}
+          maxPercentage={averageValues[0].average}
           partyLength={partyLegth}
           index={index}
         />

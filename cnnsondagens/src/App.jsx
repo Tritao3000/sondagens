@@ -3,6 +3,8 @@ import BarChartComponent from './components/BarChart';
 import LineChartComponent from './components/LineChart';
 import LineChartPosComponent from './components/LineChartPos';
 import PartidosTodos from './components/PartidosTodos';
+import MediaPos from './components/MediaPos';
+import MediaTotal from './components/MediaTotal';
 
 export const strokes = {
   Chega: '#001ba4',
@@ -70,6 +72,10 @@ function App() {
       <LineChartComponent data={sondagensHolder} />
       <div className="my-20" />
       <LineChartPosComponent data={sondagensHolder} />
+      <div className="my-20" />
+      <MediaPos data={sondagensHolder} />
+      <div className="my-20" />
+      <MediaTotal data={sondagensHolder} />
     </div>
   );
 }
