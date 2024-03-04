@@ -6,6 +6,8 @@ import LineChartComponent from './components/LineChart.jsx';
 import LineChartPosComponent from './components/LineChartPos.jsx';
 import BarChartComponent from './components/BarChart.jsx';
 import PartidosTodos from './components/PartidosTodos.jsx';
+import MediaPos from './components/MediaPos.jsx';
+import MediaTotal from './components/MediaTotal.jsx';
 
 let sondagensBackend = sondagens;
 let sondagensBackend2 = sondagens2;
@@ -40,3 +42,17 @@ ReactDOM.createRoot(document.getElementById('grafico-linhas-pos')).render(
     <LineChartPosComponent data={sondagensBackend} />
   </React.StrictMode>
 );
+if (document.getElementById('media-total')) {
+  ReactDOM.createRoot(document.getElementById('media-total')).render(
+    <React.StrictMode>
+      <MediaTotal data={sondagensBackend} />
+    </React.StrictMode>
+  );
+}
+if (document.getElementById('media-pos')) {
+  ReactDOM.createRoot(document.getElementById('media-pos')).render(
+    <React.StrictMode>
+      <MediaPos data={sondagensBackend} />
+    </React.StrictMode>
+  );
+}

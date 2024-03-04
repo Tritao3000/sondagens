@@ -1,6 +1,6 @@
 import GraphBarComponent from './GraphBarComponent';
 
-const MediaPos = ({ data }) => {
+const MediaTotal = ({ data }) => {
   if (!data) {
     return;
   }
@@ -55,4 +55,4 @@ const MediaPos = ({ data }) => {
     </div>
   );
 };
-export default MediaPos;
+export default MediaTotal;
