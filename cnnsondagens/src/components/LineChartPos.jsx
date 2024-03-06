@@ -156,7 +156,7 @@ const LineChartPosComponent = ({ data }) => {
             ))}
           </LineChart>
           <div className="flex flex-col space-y-4">
-            <div className="flex justify-between  pl-[68px] pr-4 mt-2">
+            <div className="flex justify-between  pl-[78px] pr-4 mt-2">
               {sortedData.map((day, index) => {
                 if (day.keyMoments) {
                   return (

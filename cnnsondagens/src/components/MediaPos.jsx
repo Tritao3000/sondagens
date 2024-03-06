@@ -28,7 +28,7 @@ const MediaPos = ({ data }) => {
     // Calculate the average for each party
     const averages = Object.entries(partySums).map(([partyName, sum]) => ({
       partyName,
-      average: Math.round((sum / partyCounts[partyName]) * 10) / 10,
+      average: Math.round(sum / partyCounts[partyName]),
     }));
 
     // Sort the averages from highest to lowest
@@ -38,7 +38,6 @@ const MediaPos = ({ data }) => {
   };
   const averageValues = calculateAverageValues(data[1].timeSeriesData);
   const partyLegth = averageValues.length;
-  console.log(averageValues);
 
   return (
     <div>
