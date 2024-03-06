@@ -126,7 +126,7 @@ const LineChartPosComponent = ({ data }) => {
               tick={{ fill: '#262626' }}
               dy={8}
               padding={{ left: 24, right: 24 }}
-              className="text-sm sm:text-base md:text-lg"
+              className="text-sm sm:text-base"
             />
             <YAxis
               tickLine={false}
@@ -141,7 +141,7 @@ const LineChartPosComponent = ({ data }) => {
               ]}
               tickCount={5} //tickCount
               style={{ fill: 'black', fontWeight: 600 }}
-              className="text-sm sm:text-base md:text-lg"
+              className="text-sm sm:text-base"
             />
             <Tooltip content={<CustomTooltip />} />
             {Object.keys(parties[0]).map((k, index) => (
