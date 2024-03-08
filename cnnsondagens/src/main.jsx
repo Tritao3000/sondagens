@@ -9,8 +9,14 @@ import PartidosTodos from './components/PartidosTodos.jsx';
 import MediaPos from './components/MediaPos.jsx';
 import MediaTotal from './components/MediaTotal.jsx';
 
-let sondagensBackend = sondagens;
-let sondagensBackend2 = sondagens2;
+let sondagensBackend = '';
+if (sondagens) {
+  sondagensBackend = sondagens;
+}
+let sondagensBackend2 = '';
+if (sondagens2) {
+  sondagensBackend2 = sondagens2;
+}
 /*
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,30 +24,34 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>
 );
 */
-
-ReactDOM.createRoot(document.getElementById('grafico-barras')).render(
-  <React.StrictMode>
-    <BarChartComponent data={sondagensBackend} />
-  </React.StrictMode>
-);
-
-ReactDOM.createRoot(document.getElementById('ranking')).render(
-  <React.StrictMode>
-    <PartidosTodos data={sondagensBackend2} />
-  </React.StrictMode>
-);
-
-ReactDOM.createRoot(document.getElementById('grafico-linhas')).render(
-  <React.StrictMode>
-    <LineChartComponent data={sondagensBackend} />
-  </React.StrictMode>
-);
-
-ReactDOM.createRoot(document.getElementById('grafico-linhas-pos')).render(
-  <React.StrictMode>
-    <LineChartPosComponent data={sondagensBackend} />
-  </React.StrictMode>
-);
+if (document.getElementById('grafico-barras')) {
+  ReactDOM.createRoot(document.getElementById('grafico-barras')).render(
+    <React.StrictMode>
+      <BarChartComponent data={sondagensBackend} />
+    </React.StrictMode>
+  );
+}
+if (document.getElementById('ranking')) {
+  ReactDOM.createRoot(document.getElementById('ranking')).render(
+    <React.StrictMode>
+      <PartidosTodos data={sondagensBackend2} />
+    </React.StrictMode>
+  );
+}
+if (document.getElementById('grafico-linhas')) {
+  ReactDOM.createRoot(document.getElementById('grafico-linhas')).render(
+    <React.StrictMode>
+      <LineChartComponent data={sondagensBackend} />
+    </React.StrictMode>
+  );
+}
+if (document.getElementById('grafico-linhas-pos')) {
+  ReactDOM.createRoot(document.getElementById('grafico-linhas-pos')).render(
+    <React.StrictMode>
+      <LineChartPosComponent data={sondagensBackend} />
+    </React.StrictMode>
+  );
+}
 if (document.getElementById('media-total')) {
   ReactDOM.createRoot(document.getElementById('media-total')).render(
     <React.StrictMode>
