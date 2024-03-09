@@ -24,7 +24,18 @@ const PartidosTodos = ({ data }) => {
     return positivePercentageB - positivePercentageA;
   });
   return (
-    <div>
+    <div
+      className="p-2 md:p-8 rounded-md border-none relative flex justify-center"
+      style={{ boxShadow: '0px 0px 8px 0px rgba(38,38,38,0.2)' }}
+    >
+      <p className="text-[#262626]">
+        A atualização diária do Pulsómetro da Campanha terminou no dia 9 de
+        março, último dia de campanha para as eleições legislativas de 2024.
+      </p>
+    </div>
+  );
+
+  /*<div>
       <div className="flex flex-col">
         <div className="flex justify-between mb-4">
           {' '}
@@ -46,8 +57,7 @@ const PartidosTodos = ({ data }) => {
           date={data[1]}
         />
       ))}
-    </div>
-  );
+      </div>*/
 };
 
 export default PartidosTodos;
